@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { WebsocketService } from 'src/app/configuration/WebsocketService';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-sensor-status',
@@ -13,72 +14,36 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./sensor-status.component.scss']
 })
 export class SensorStatusComponent  {
-
-  data: any;
-  isConnected = false;
-
-connectionId2="plc-write";
-  constructor(private wsService: WebsocketService) { }
-
-  ngOnInit(): void {
-
-  }
-
-//   sendControl(tagName: string, value: boolean) {
-//   this.http.post('/api/control', { tag: tagName, value: value })
-//     .subscribe(
-//       response => console.log('Control sent', { tag: tagName, value: value }),
-//       error => console.error('Error', error)
-//     );
-//     console.log("{ tag: tagName, value: value }",{ tag: tagName, value: value });
-// }
-
-controlStates: { [key: string]: boolean } = {};
-
-toggleControl(controlName: string) {
-  // Toggle the state
-  this.controlStates[controlName] = !this.controlStates[controlName];
-  // Send the new state
-  console.log(" this.controlStates[controlName] ", this.controlStates[controlName] );
-  this.sendControl(controlName, this.controlStates[controlName]);
+  
+indicators={
+  "X11_NEST_A_SIDE_CURTAIN": false,
+  "X12_NEST_A_SIDE_CURTAIN": false,
+  "X20_NEST_A_FIXTURE_1_CLAMP_CYL_FWD_RS": false,
+  "X21_NEST_A_FIXTURE_1_CLAMP_CYL_REV_RS": false,
+  "X22_NEST_A_FIXTURE_2_CLAMP_CYL_FWD_RS": false,
+  "X23_NEST_A_FIXTURE_2_CLAMP_CYL_REV_RS": false,
+  "X24_NEST_A_FIXTURE_2_CLAMP_CYL1_FWD_RS": false,
+  "X40_NEST_A_VACUUM_GENERATOR_FB": false,
+  "X41_NEST_B_VACUUM_GENERATOR_FB": false,
+  "X42_NEST_A_FIXTURE_1_PART_PRESENCE_PRX_1": false,
+  "X43_NEST_A_FIXTURE_1_PART_PRESENCE_PRX_2": false,
+  "X44_NEST_A_FIXTURE_2_PART_PRESENCE_PRX_1": false,
+  "X45_NEST_A_FIXTURE_2_PART_PRESENCE_PRX_2": false,
+  "X46_NEST_B_FIXTURE_1_PART_PRESENCE_PRX_1": false,
+  "X47_NEST_B_FIXTURE_1_PART_PRESENCE_PRX_2": false,
+  "X50_NEST_B_FIXTURE_2_PART_PRESENCE_PRX_1": false,
+  "X51_NEST_B_FIXTURE_2_PART_PRESENCE_PRX_2": false
 }
 
-  async sendControl(address: string, value: number | boolean): Promise<void> {
-    const data = {
-      section: 'robo',
-      tag_name: address,
-      value: value
+ splitKey(key: string): { code: string, tagName: string } {
+    const firstUnderscore = key.indexOf('_');
+    return {
+      code: key.substring(0, firstUnderscore),
+      tagName: key.substring(firstUnderscore + 1)
     };
-    const message = JSON.stringify(data);
-
-    console.log("Sending message:", message);
-
-    try {
-      if (!this.isConnected) {
-        this.wsService.initConnection(this.connectionId2);
-        await new Promise(resolve => setTimeout(resolve, 300));
-      }
-
-      this.wsService.sendMessage(this.connectionId2,message).subscribe({
-        next: (response: any) => {
-          console.log("WebSocket Response:", response);
-        },
-        error: (error: any) => {
-          console.error("WebSocket Error:", error);
-
-        }
-      });
-    } catch (error) {
-      console.error("Command failed:", error);
-    }
   }
 
-  getStatusClass(value: boolean): string {
-    return value ? 'true' : 'false';
-  }
+  // Preserve original object order
+  originalOrder = (a: KeyValue<string, boolean>, b: KeyValue<string, boolean>): number => 0;
 
-  ngOnDestroy(): void {
-    this.wsService.closeConnection(this.connectionId2);
-    this.wsService.ngOnDestroy();
-  }
 }

@@ -21,6 +21,7 @@ connectionId2="plc-write";
     this.connectToStatus();
   }
 
+  value =0;
   private connectToStatus(): void {
     this.wsService.initConnection(this.connectionId);
     this.wsService.getMessages(this.connectionId).subscribe({
