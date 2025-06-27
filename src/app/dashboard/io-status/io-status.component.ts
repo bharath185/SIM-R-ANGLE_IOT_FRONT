@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class IoStatusComponent  {
 
+  columnWiseIndicators: any[] = [];
   
 indicators={
   "X0_START_PB": false,

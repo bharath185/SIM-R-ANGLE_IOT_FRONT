@@ -8,24 +8,24 @@
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">SHUTTLE TRANSFER MODE POS</div>
-              <div class="indicator-value">{{ data?.ROBOTMODE }}</div>
+              <div class="indicator-value">{{ data?.SHUTTLE_TRANSFER_SERVO }}</div>
             </div>
           </div>
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">CONTROLLER STATUS</div>
-              <div class="indicator-value" [style.font-weight]="value !== undefined ? 'bold' : 'normal'"
-                [style.color]="value === 1 ? 'green' : value === 0 ? 'red' : 'black'">
-                {{ value === 1 ? 'CONNECTED' : value === 0 ? 'DISCONNECTED' : '' }}
+              <div class="indicator-value" [style.font-weight]="data?.CONTROLLER_STATUS !== undefined ? 'bold' : 'normal'"
+                [style.color]="data?.CONTROLLER_STATUS === 1 ? 'green' : data?.CONTROLLER_STATUS === 0 ? 'red' : 'black'">
+                {{ data?.CONTROLLER_STATUS === 1 ? 'CONNECTED' : data?.CONTROLLER_STATUS === 0 ? 'DISCONNECTED' : '' }}
               </div>
             </div>
           </div>
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">PROGRAM STATUS</div>
-              <div class="indicator-value" [style.font-weight]="value !== undefined ? 'bold' : 'normal'"
-                [style.color]="value === 1 ? 'green' : value === 0 ? 'red' : 'black'">
-                {{ value === 1 ? 'RUN' : value === 0 ? 'STOP' : '' }}
+              <div class="indicator-value" [style.font-weight]="data?.PROGRAM_STATUS !== undefined ? 'bold' : 'normal'"
+                [style.color]="data?.PROGRAM_STATUS === 1 ? 'green' : data?.PROGRAM_STATUS === 0 ? 'red' : 'black'">
+                {{ data?.PROGRAM_STATUS === 1 ? 'RUN' : data?.PROGRAM_STATUS === 0 ? 'STOP' : '' }}
               </div>
             </div>
           </div>
@@ -33,7 +33,7 @@
             <div class="indicator-content">
               <div class="indicator-title mx-3">ACTUAL POS</div>
               <div class="indicator-value bold">
-                {{ value }}
+                {{ data?.ACTUAL_POS }}
               </div>
             </div>
           </div>
@@ -41,28 +41,28 @@
             <div class="indicator-content">
               <div class="indicator-title mx-3">ACTUAL SPEED</div>
               <div class="indicator-value bold">
-                {{ value }}
+                {{ data?.ACTUAL_SPEED }}
               </div>
             </div>
           </div>
         </div>
         <div class="buttons-section">
-          <button class="toggle-btn" (mousedown)="sendCommand('ABORTPROGRAM1', true)"
-            (mouseup)="sendCommand('ABORTPROGRAM1', false)">
+          <button class="toggle-btn" (mousedown)="sendCommand('HOME', true)"
+            (mouseup)="sendCommand('HOME', false)">
             HOME
           </button>
-          <button class="toggle-btn" (mousedown)="sendCommand('HOMEPROGRAM1', true)"
-            (mouseup)="sendCommand('HOMEPROGRAM1', false)">INITIALIZE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('MAINPROGRAM1', true)"
-            (mouseup)="sendCommand('MAINPROGRAM1', false)">OP ENABLE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('INITIALIZEPROGRAM1', true)"
-            (mouseup)="sendCommand('INITIALIZEPROGRAM1', false)">JOG FORWARD</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('PAUSEPROGRAM1', true)"
-            (mouseup)="sendCommand('PAUSEPROGRAM1', false)">JOG REVERSE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('ERRORACKNOWLEDGE1', true)"
-            (mouseup)="sendCommand('ERRORACKNOWLEDGE1', false)">START</button>
-          <button class="toggle-btn " (mousedown)="sendCommand('CONTINUEPROGRAM1', true)"
-            (mouseup)="sendCommand('CONTINUEPROGRAM1', false)">STOP</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('REFERENCE', true)"
+            (mouseup)="sendCommand('REFERENCE', false)">REFERENCE</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('OP_ENABLE', true)"
+            (mouseup)="sendCommand('OP_ENABLE', false)">OP ENABLE</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('JOG_FORWARD', true)"
+            (mouseup)="sendCommand('JOG_FORWARD', false)">JOG FORWARD</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('JOG_REVERSE', true)"
+            (mouseup)="sendCommand('JOG_REVERSE', false)">JOG REVERSE</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('START', true)"
+            (mouseup)="sendCommand('START', false)">START</button>
+          <button class="toggle-btn " (mousedown)="sendCommand('STOP', true)"
+            (mouseup)="sendCommand('STOP', false)">STOP</button>
 
         </div>
       </div>
@@ -76,24 +76,24 @@
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">SHUTTLE TRANSFER MODE POS</div>
-              <div class="indicator-value">{{ data?.ROBOTMODE }}</div>
+              <div class="indicator-value">{{ data?.SHUTTLE_TRANSFER_SERVO1 }}</div>
             </div>
           </div>
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">CONTROLLER STATUS</div>
-              <div class="indicator-value" [style.font-weight]="value !== undefined ? 'bold' : 'normal'"
-                [style.color]="value === 1 ? 'green' : value === 0 ? 'red' : 'black'">
-                {{ value === 1 ? 'CONNECTED' : value === 0 ? 'DISCONNECTED' : '' }}
+              <div class="indicator-value" [style.font-weight]="data?.CONTROLLER_STATUS1 !== undefined ? 'bold' : 'normal'"
+                [style.color]="data?.CONTROLLER_STATUS1 === 1 ? 'green' : data?.CONTROLLER_STATUS1 === 0 ? 'red' : 'black'">
+                {{ data?.CONTROLLER_STATUS1 === 1 ? 'CONNECTED' : data?.CONTROLLER_STATUS1 === 0 ? 'DISCONNECTED' : '' }}
               </div>
             </div>
           </div>
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">PROGRAM STATUS</div>
-              <div class="indicator-value" [style.font-weight]="value !== undefined ? 'bold' : 'normal'"
-                [style.color]="value === 1 ? 'green' : value === 0 ? 'red' : 'black'">
-                {{ value === 1 ? 'RUN' : value === 0 ? 'STOP' : '' }}
+              <div class="indicator-value" [style.font-weight]="data?.PROGRAM_STATUS1 !== undefined ? 'bold' : 'normal'"
+                [style.color]="data?.PROGRAM_STATUS1 === 1 ? 'green' : data?.PROGRAM_STATUS1 === 0 ? 'red' : 'black'">
+                {{ data?.PROGRAM_STATUS1 === 1 ? 'RUN' : data?.PROGRAM_STATUS1 === 0 ? 'STOP' : '' }}
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@
             <div class="indicator-content">
               <div class="indicator-title mx-3">ACTUAL POS</div>
               <div class="indicator-value bold">
-                {{ value }}
+                {{ data?.ACTUAL_POS1 }}
               </div>
             </div>
           </div>
@@ -109,28 +109,28 @@
             <div class="indicator-content">
               <div class="indicator-title mx-3">ACTUAL SPEED</div>
               <div class="indicator-value bold">
-                {{ value }}
+                {{ data?.ACTUAL_SPEED1 }}
               </div>
             </div>
           </div>
         </div>
         <div class="buttons-section">
-          <button class="toggle-btn" (mousedown)="sendCommand('ABORTPROGRAM1', true)"
-            (mouseup)="sendCommand('ABORTPROGRAM1', false)">
+          <button class="toggle-btn" (mousedown)="sendCommand('HOME1', true)"
+            (mouseup)="sendCommand('HOME1', false)">
             HOME
           </button>
-          <button class="toggle-btn" (mousedown)="sendCommand('HOMEPROGRAM1', true)"
-            (mouseup)="sendCommand('HOMEPROGRAM1', false)">INITIALIZE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('MAINPROGRAM1', true)"
-            (mouseup)="sendCommand('MAINPROGRAM1', false)">OP ENABLE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('INITIALIZEPROGRAM1', true)"
-            (mouseup)="sendCommand('INITIALIZEPROGRAM1', false)">JOG FORWARD</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('PAUSEPROGRAM1', true)"
-            (mouseup)="sendCommand('PAUSEPROGRAM1', false)">JOG REVERSE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('ERRORACKNOWLEDGE1', true)"
-            (mouseup)="sendCommand('ERRORACKNOWLEDGE1', false)">START</button>
-          <button class="toggle-btn " (mousedown)="sendCommand('CONTINUEPROGRAM1', true)"
-            (mouseup)="sendCommand('CONTINUEPROGRAM1', false)">STOP</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('REFERENCE1', true)"
+            (mouseup)="sendCommand('REFERENCE', false)">REFERENCE</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('OP_ENABLE1', true)"
+            (mouseup)="sendCommand('OP_ENABLE1', false)">OP ENABLE</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('JOG_FORWARD1', true)"
+            (mouseup)="sendCommand('JOG_FORWARD1', false)">JOG FORWARD</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('JOG_REVERSE1', true)"
+            (mouseup)="sendCommand('JOG_REVERSE1', false)">JOG REVERSE</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('START1', true)"
+            (mouseup)="sendCommand('START1', false)">START</button>
+          <button class="toggle-btn " (mousedown)="sendCommand('STOP1', true)"
+            (mouseup)="sendCommand('STOP1', false)">STOP</button>
 
         </div>
       </div>
@@ -144,24 +144,24 @@
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">SHUTTLE TRANSFER MODE POS</div>
-              <div class="indicator-value">{{ data?.ROBOTMODE }}</div>
+              <div class="indicator-value">{{ data?.SHUTTLE_TRANSFER_SERVO2 }}</div>
             </div>
           </div>
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">CONTROLLER STATUS</div>
-              <div class="indicator-value" [style.font-weight]="value !== undefined ? 'bold' : 'normal'"
-                [style.color]="value === 1 ? 'green' : value === 0 ? 'red' : 'black'">
-                {{ value === 1 ? 'CONNECTED' : value === 0 ? 'DISCONNECTED' : '' }}
+              <div class="indicator-value" [style.font-weight]="data?.CONTROLLER_STATUS2 !== undefined ? 'bold' : 'normal'"
+                [style.color]="data?.CONTROLLER_STATUS2 === 1 ? 'green' : data?.CONTROLLER_STATUS2 === 0 ? 'red' : 'black'">
+                {{ data?.CONTROLLER_STATUS2 === 1 ? 'CONNECTED' : data?.CONTROLLER_STATUS2 === 0 ? 'DISCONNECTED' : '' }}
               </div>
             </div>
           </div>
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">PROGRAM STATUS</div>
-              <div class="indicator-value" [style.font-weight]="value !== undefined ? 'bold' : 'normal'"
-                [style.color]="value === 1 ? 'green' : value === 0 ? 'red' : 'black'">
-                {{ value === 1 ? 'RUN' : value === 0 ? 'STOP' : '' }}
+              <div class="indicator-value" [style.font-weight]="data?.PROGRAM_STATUS2 !== undefined ? 'bold' : 'normal'"
+                [style.color]="data?.PROGRAM_STATUS2 === 1 ? 'green' : data?.PROGRAM_STATUS2 === 0 ? 'red' : 'black'">
+                {{ data?.PROGRAM_STATUS2 === 1 ? 'RUN' : data?.PROGRAM_STATUS2 === 0 ? 'STOP' : '' }}
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@
             <div class="indicator-content">
               <div class="indicator-title mx-3">ACTUAL POS</div>
               <div class="indicator-value bold">
-                {{ value }}
+                {{ data?.ACTUAL_POS2 }}
               </div>
             </div>
           </div>
@@ -177,28 +177,28 @@
             <div class="indicator-content">
               <div class="indicator-title mx-3">ACTUAL SPEED</div>
               <div class="indicator-value bold">
-                {{ value }}
+                {{ data?.ACTUAL_SPEED2 }}
               </div>
             </div>
           </div>
         </div>
         <div class="buttons-section">
-          <button class="toggle-btn" (mousedown)="sendCommand('ABORTPROGRAM1', true)"
-            (mouseup)="sendCommand('ABORTPROGRAM1', false)">
+          <button class="toggle-btn" (mousedown)="sendCommand('HOME2', true)"
+            (mouseup)="sendCommand('HOME2', false)">
             HOME
           </button>
-          <button class="toggle-btn" (mousedown)="sendCommand('HOMEPROGRAM1', true)"
-            (mouseup)="sendCommand('HOMEPROGRAM1', false)">INITIALIZE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('MAINPROGRAM1', true)"
-            (mouseup)="sendCommand('MAINPROGRAM1', false)">OP ENABLE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('INITIALIZEPROGRAM1', true)"
-            (mouseup)="sendCommand('INITIALIZEPROGRAM1', false)">JOG FORWARD</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('PAUSEPROGRAM1', true)"
-            (mouseup)="sendCommand('PAUSEPROGRAM1', false)">JOG REVERSE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('ERRORACKNOWLEDGE1', true)"
-            (mouseup)="sendCommand('ERRORACKNOWLEDGE1', false)">START</button>
-          <button class="toggle-btn " (mousedown)="sendCommand('CONTINUEPROGRAM1', true)"
-            (mouseup)="sendCommand('CONTINUEPROGRAM1', false)">STOP</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('REFERENCE2', true)"
+            (mouseup)="sendCommand('REFERENCE2', false)">REFERENCE</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('OP_ENABLE2', true)"
+            (mouseup)="sendCommand('OP_ENABLE2', false)">OP ENABLE</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('JOG_FORWARD2', true)"
+            (mouseup)="sendCommand('JOG_FORWARD2', false)">JOG FORWARD</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('JOG_REVERSE2', true)"
+            (mouseup)="sendCommand('JOG_REVERSE2', false)">JOG REVERSE</button>
+          <button class="toggle-btn" (mousedown)="sendCommand('START2', true)"
+            (mouseup)="sendCommand('START2', false)">START</button>
+          <button class="toggle-btn " (mousedown)="sendCommand('STOP2', true)"
+            (mouseup)="sendCommand('STOP2', false)">STOP</button>
 
         </div>
       </div>
