@@ -259,11 +259,11 @@ await this.idbService.saveAlarms(this.data);
 this.sesssuion=sessionStorage.getItem('data');
   this.permission=sessionStorage.getItem('access');
   this.permission=JSON.parse(this.permission);
-  this.shift_start_time=JSON.parse(this.sesssuion).shift_start_time
+  this.shift_start_time=JSON.parse(this.sesssuion).shift.start_time
   this.machine_id=JSON.parse(this.sesssuion).machine_id
-  this.shift_end_time=JSON.parse(this.sesssuion).shift_end_time
-  this.shift_name=JSON.parse(this.sesssuion).shift_name
-  this.username=JSON.parse(this.sesssuion).username
+  this.shift_end_time=JSON.parse(this.sesssuion).shift.end_time
+  this.shift_name=JSON.parse(this.sesssuion).shift.name
+  this.username=JSON.parse(this.sesssuion).user.username
   const allAlarms = await this.idbService.getAllAlarms();
   this.localStorageService.setItem("alarms",allAlarms);
   this.startDigitalClock(); 

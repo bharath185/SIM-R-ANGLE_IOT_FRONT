@@ -16,7 +16,7 @@ export class UserService {
   reqHeader: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.BaseEndpoint = Config.BaseEndpoint;
+    this.BaseEndpoint = Config.BaseEndpointmr;
     const token = sessionStorage.getItem('accessToken'); // Fetch the token from session storage
     this.reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',

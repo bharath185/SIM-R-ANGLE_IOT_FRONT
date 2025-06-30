@@ -15,9 +15,9 @@ import { ApiService } from 'src/app/Auth/authentication/sign-in/api.service';
 export interface User {
   id: number;     // Role ID
   username: string;   // Role Name
-  firstname: string;
-  lastname: string;
-  roleid: number;
+  full_name: string;
+  email: string;
+  role_id: number;
   roleName: String;
   password: string;
   isEditing?: boolean; // Optional property to track editing state
@@ -61,8 +61,9 @@ export class UsersComponent {
   }
 
   ngOnInit(): void {
-    this.getAllUsers();
-    //   this.getAllRoles();
+   
+       this.getAllRoles();
+        this.getAllUsers();
     // this.getAllStores();
     this.paginatedRows.forEach(user => {
       user.isRoleDropdownOpen = false;
@@ -75,18 +76,18 @@ export class UsersComponent {
 next: (response: any) => {
     if (!response || !Array.isArray(response)) {
         console.error('Invalid response format');
-        this.rows = [];
+        this.rows = response[0];
         return;
     }
 
     this.rows = response.map(row => {
         try {
-            const roleId = row.roleid || this.getRoleId(row.roleName);
-            const roleName = row.roleName || this.getRoleName(row.roleid);
+            const roleId = row.role_id || this.getRoleId(row.roleName);
+            const roleName = row.roleName || this.getRoleName(row.role_id);
             
             return {
                 ...row,
-                roleid: roleId,
+                role_id: roleId,
                 roleName: roleName,
                 role: roleName
             };
@@ -94,7 +95,7 @@ next: (response: any) => {
             console.error('Error processing row:', row, error);
             return {
                 ...row,
-                roleId: row.roleId || -1,
+                role_id: row.role_id || -1,
                 roleName: row.roleName || 'Unknown Role'
             };
         }
@@ -107,18 +108,14 @@ next: (response: any) => {
     });
   }
 
-  staticRoles = [
-    { roleid: 1, roleName: 'Admin' },
-    { roleid: 2, roleName: 'Engineer' }
 
-  ];
 
   getRoleName(roleId: Number): string {
-    const role = this.staticRoles.find(r => r.roleid === roleId);
+    const role = this.roles.find(r => r.roleid === roleId);
     return role ? role.roleName : 'Unknown Role';
   }
 getRoleId(roleName: string): number {
-    const role = this.staticRoles.find(r => r.roleName === roleName);
+    const role = this.roles.find(r => r.roleName === roleName);
     return role ? role.roleid : -1; // Return -1 or null if role not found
 }
 
@@ -126,10 +123,10 @@ getRoleId(roleName: string): number {
     if (this.currentlyEditingIndex === -1) {
       this.rows.unshift({
         username: '',
-        firstname: '',
-        lastname: '',
+        full_name: '',
+        email: '',
         password: '',
-        roleid: 0,
+        role_id: 0,
         roleName: '',
         isEditing: true,
         isRoleDropdownOpen: false,
@@ -152,7 +149,7 @@ getRoleId(roleName: string): number {
     if (row.username === '') {
       this.triggerToast("Error", "UserName cannot be empty", "danger");
       return;
-    } else if (row.roleid === 0) {
+    } else if (row.role_id === 0) {
       this.triggerToast("Error", "Role must be selected", "danger");
       return;
     }
@@ -223,11 +220,11 @@ getRoleId(roleName: string): number {
 
   saveToApi(row: User) {
     const payload={
-    firstname: row.firstname,
-    lastname: row.lastname,
+    full_name: row.full_name,
+    email: row.email,
     username: row.username,
     password: row.password,
-    role: row.roleName
+    role: row.role_id
     }
     this.userService.saveUser(payload).subscribe(
       response => {
@@ -292,11 +289,11 @@ getRoleId(roleName: string): number {
   }
 
 
-  filteredRoles = this.staticRoles;
+  filteredRoles : any;
 
 
   filterRoles(row: any, searchTerm: string) {
-    this.filteredRoles = this.staticRoles.filter((role: { roleName: string; }) =>
+    this.filteredRoles = this.roles.filter((role: { roleName: string; }) =>
       role.roleName.toLowerCase().includes(searchTerm.toLowerCase())
     );
     row.isRoleDropdownOpen = true;
@@ -312,20 +309,12 @@ getRoleId(roleName: string): number {
 
     //console.log("role",event,"row",row);
     const inputElement = event.target as HTMLInputElement;
-    row.roleid = Number(inputElement.value);
+    row.role_id = Number(inputElement.value);
 
     row.rolename = this.getRoleName(Number(inputElement.value));
     row.isRoleDropdownOpen = false;
   }
 
-
-  selectStore(row: any, event: Event) {
-
-    //console.log("role",event,"row",row);
-    const inputElement = event.target as HTMLInputElement;
-    row.storeid = Number(inputElement.value);
-    row.isRoleDropdownOpen = false;
-  }
 
   triggerToast(header: any, body: any, mess: any) {
     this.toastMessageComponent.showToast(header, body, mess);
@@ -339,6 +328,19 @@ getRoleId(roleName: string): number {
     this.modalInstance.show();
   }
 
+  roles: any[] = [];
+ getAllRoles() {
+   
+    this.apiService.getRoles()
+      .then((response) => {
+        this.roles = response;
+       
+      })
+      .catch((error) => {
+       
+        console.error('Error:', error);
+      });
+  }
 }
 
 

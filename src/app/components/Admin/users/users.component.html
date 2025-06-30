@@ -13,8 +13,8 @@
         <thead>
           <tr class="inner-shadow">
             <th class="sl-no-header">SL No</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Full Name</th>
+            <th>Email Id</th>
             <th>User Name</th>
             <th>Password</th>
             <!-- <th>Email ID</th> -->
@@ -29,21 +29,21 @@
               <input
                 *ngIf="row.isEditing"
                 type="text"
-                [(ngModel)]="row.firstname"
+                [(ngModel)]="row.full_name"
                 class="form-control"
-                (input)="sanitizeInput(row, 'firstName')"
+                (input)="sanitizeInput(row, 'full_name')"
               />
-              <span *ngIf="!row.isEditing">{{ row.firstname }}</span>
+              <span *ngIf="!row.isEditing">{{ row.full_name }}</span>
             </td>
             <td>
               <input
                 *ngIf="row.isEditing"
                 type="text"
-                [(ngModel)]="row.lastname"
+                [(ngModel)]="row.email"
                 class="form-control"
                 (input)="sanitizeInput(row, 'lastName')"
               />
-              <span *ngIf="!row.isEditing">{{ row.lastname }}</span>
+              <span *ngIf="!row.isEditing">{{ row.email }}</span>
             </td>
             <td>
               <input
@@ -64,20 +64,24 @@
                 (input)="sanitizeInput(row, 'password')"
                 
               />
-              <span *ngIf="!row.isEditing">{{ row.password }}</span>
+              <span *ngIf="!row.isEditing"> ************ </span>
             </td>
            <td>
             <div class="role-select">
               <select
                 class="form-select"
-                [(ngModel)]="row.roleid"
+                [(ngModel)]="row.role_id"
                 [disabled]="!row.isEditing"
                 (change)="selectRole(row, $event)" 
                 required>
-                <option value="" disabled>Select a role</option>
-                <option *ngFor="let role of staticRoles" [value]="role.roleid">{{ role.roleName }}</option>
+                    <option value="" disabled selected>Select Role</option>
+                    <option 
+                      *ngFor="let role of roles" 
+                      [value]="role.id">
+                      {{ role.name | titlecase }}
+                    </option>
               </select>
-              <small class="text-danger" *ngIf="row.isEditing && !row.roleid">Role  is mandatory</small>
+              <small class="text-danger" *ngIf="row.isEditing && !row.role_id">Role  is mandatory</small>
             </div>
           </td>
             <td>

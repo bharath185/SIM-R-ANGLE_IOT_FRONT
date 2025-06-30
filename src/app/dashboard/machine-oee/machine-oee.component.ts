@@ -42,8 +42,8 @@ faultData:any;
       }
     });
 
-    this.alarmmessage= await  this.idbService.getAlarm(this.data.alarmSignals);
-    console.log(this.idbService.getAlarm(this.data.alarmSignals),"this.alarmmessage");
+    //this.alarmmessage= await  this.idbService.getAlarm(this.data.alarmSignals);
+   // console.log(this.idbService.getAlarm(this.data.alarmSignals),"this.alarmmessage");
   }
 
 

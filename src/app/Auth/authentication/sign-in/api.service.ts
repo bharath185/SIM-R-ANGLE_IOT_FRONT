@@ -14,6 +14,7 @@ import { DevToolsDetectionService } from 'src/app/shared/configuration/DevToolsD
 export class ApiService {
     private nonce: string | null = null;
     BaseEndpoint: any = Config.BaseEndpoint;
+    BaseEndpointmr: any = Config.BaseEndpointmr;
     isLoggedIn = false;
     private tokenKey: string | null = null;
     private reqHeader!: HttpHeaders;
@@ -23,7 +24,7 @@ export class ApiService {
     }
     nonceforlogin: any;
     login(data: any) {
-        return this.http.post(this.BaseEndpoint + 'user/login', data)
+        return this.http.post(this.BaseEndpoint + 'login', data)
             .toPromise()
             .then((response: any) => {
                 this.tokenKey = response.token;
@@ -35,7 +36,17 @@ export class ApiService {
                 return Promise.reject(error);
             });
     }
-
+ getRoles(): Promise<any> {
+    return this.http.get(this.BaseEndpointmr + 'roles')
+      .toPromise()
+      .then((response: any) => {
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error fetching roles:', error);
+        return Promise.reject(error);
+      });
+  }
     logout(): Promise<any> {
         const token = sessionStorage.getItem('accessToken');
         if (!token) {
@@ -54,8 +65,6 @@ export class ApiService {
         ).toPromise()
             .then((response: any) => {
                 sessionStorage.removeItem('accessToken');
-
-
                 return response;  
             })
             .catch(error => {

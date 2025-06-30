@@ -7,6 +7,7 @@ import { CommonModule } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
 import { filter } from "rxjs";
 import { SessionService } from "src/app/shared/configuration/SessionService";
+import { IndexedDbService } from "src/app/services/IndexedDbService";
 
 @Component({
   standalone: true,
@@ -31,12 +32,13 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   constructor(
     private sessionService: SessionService,
+    private idbService:IndexedDbService,
     private apiService: ApiService,
     private router: Router,
     private fb: FormBuilder,
   ) {
     this.loginForm = this.fb.group({
-      role: ['', Validators.required],
+      role: [0, Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
@@ -46,7 +48,7 @@ export class SignInComponent implements OnInit, OnDestroy {
     sessionStorage.clear();
     localStorage.clear();
     this.apiService.logout();
-
+    this.getAllRoles();
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
@@ -125,8 +127,8 @@ export class SignInComponent implements OnInit, OnDestroy {
     this.spinner = true;
     const data = {
       role: this.loginForm.controls['role'].value,
-      Username: this.loginForm.controls['username'].value,
-      Password: this.loginForm.controls['password'].value,
+      username: this.loginForm.controls['username'].value,
+      password: this.loginForm.controls['password'].value,
       Process: ''
     }
     this.apiService.login(data).then(
@@ -141,7 +143,8 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   private async handleSuccessfulLogin(data: any): Promise<void> {
     if (data) {
-      this.triggerToast('Login', data.message, 'success');
+      this.triggerToast('Login', data.status, 'success');
+   
       sessionStorage.setItem('data', JSON.stringify(data));
     }
     await new Promise(resolve => setTimeout(resolve, 1500));
@@ -165,5 +168,19 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   getSecureFileUrl(filename: string): string {
     return `/assets/secure/${filename}`;
+  }
+
+roles: any[] = [];
+ getAllRoles() {
+    this.loading = true;
+    this.apiService.getRoles()
+      .then((response) => {
+        this.roles = response;
+        this.loading = false;
+      })
+      .catch((error) => {
+        this.loading = false;
+        console.error('Error:', error);
+      });
   }
 }
