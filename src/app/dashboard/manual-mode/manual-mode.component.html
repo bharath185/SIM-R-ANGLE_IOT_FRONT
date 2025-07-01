@@ -1,508 +1,256 @@
 <div class="machine-home-container">
-
-
-  <div class="container-fluid p-2">
-    <!-- First Row - 4 Cards -->
-    <div class="row g-2 mb-3">
-      <!-- Card 1: Loading Conveyor -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="false">
-          <div class="card-header bg-dark text-white py-1">
-            <h6 class="card-title mb-0 small-font">LOADING CONVEYOR</h6>
-          </div>
-          <div class="card-body p-1">
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS1 === 1">
-                LOADING CONVEYOR MODE POS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS1 === 1">CONTROLLER
-                STATUS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS1 === 1">PROGRAM STATUS
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS1 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED1 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED1 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>JOG SPEED</span>
-                </div>
-              </div>
-            </div>
-                        <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPoslc">
-              </div>
-            </div>
-              <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeedlc">
-              </div>
-            </div>
-          </div>
-          <div class="card-footer p-1">
-            <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME1',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE1',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE1',1)">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD1', 'TARGETPOS1',targetPoslc, 'TARGETSPEED1',targetSpeedlc)">JOG FORWARD</button>
-              <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE1', 'TARGETPOS1',targetPoslc, 'TARGETSPEED1',targetSpeedlc)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START1',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP1',1)">STOP</button>
-            </div>
-          </div>
+  <div class="row">
+    <!-- HMI NEST A Card -->
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <div class="card-header bg-dark text-white">
+          <h4 class="card-title text-center">HMI NEST A</h4>
         </div>
-      </div>
+        <div class="card-body  text-white">
+          <!-- FIXTURE 1 Section -->
+          <div class="mb-4 border-bottom pb-3">
+            <h5 class="text-center">HMI NEST A FIXTURE 1</h5>
 
-      <!-- Card 2: Unload Conveyor -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="false">
-          <div class="card-header bg-dark text-white py-1">
-            <h6 class="card-title mb-0 small-font">UNLOADING CONVEYOR</h6>
-          </div>
-          <div class="card-body p-1">
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS2 === 1">
-                UNLOADING CONVEYOR MODE POS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS2 === 1">CONTROLLER
-                STATUS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS2 === 1">PROGRAM STATUS
-              </div>
+            <!-- CLAMP CYL -->
+            <div class="text-center mb-2">CLAMP CYL</div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
             </div>
 
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS2 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS</span>
-
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED2 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED2 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>JOG SPEED</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPosuc">
-              </div>
-            </div>
-              <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeeduc">
-              </div>
-            </div>
-          </div>
-          <div class="card-footer p-1">
-            <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME2',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE2',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE2',1)">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD2', 'TARGETPOS2',targetPosuc, 'TARGETSPEED2',targetSpeeduc)">JOG FORWARD</button>
-              <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE2', 'TARGETPOS2',targetPosuc, 'TARGETSPEED2',targetSpeeduc)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START2',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP2',1)">STOP</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3: Gantry 1 -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="false">
-          <div class="card-header bg-dark text-white py-1">
-            <h6 class="card-title mb-0 small-font">GANTRY 1 FESTO</h6>
-          </div>
-          <div class="card-body p-1">
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS3 === 1">GANTRY 1 FESTO MODE POS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS3 === 1">
-                CONTROLLER STATUS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS3 === 1">
-                PROGRAM STATUS</div>
+            <!-- VACUUM -->
+            <div class="text-center mb-2">VACUUM</div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
             </div>
 
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS3 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED3 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED3 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>JOG SPEED</span>
-                </div>
-              </div>
-            </div>
-                        <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPosg1f">
-              </div>
-            </div>
-              <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeedg1f">
-              </div>
+            <!-- BLOWER -->
+            <div class="text-center mb-2">BLOWER</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
             </div>
           </div>
-          <div class="card-footer p-1">
-            <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME3',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE3',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE3',1)">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD3', 'TARGETPOS3',targetPosg1f, 'TARGETSPEED3',targetSpeedg1f)">JOG FORWARD</button>
-              <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE3', 'TARGETPOS3',targetPosg1f, 'TARGETSPEED3',targetSpeedg1f)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START3',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP3',1)">STOP</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Card 4: Gantry 2 -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="false">
-          <div class="card-header bg-dark text-white py-1">
-            <h6 class="card-title mb-0 small-font">GANTRY 2 FESTO</h6>
-          </div>
-          <div class="card-body p-1">
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS4 === 1">GANTRY 2 FESTO MODE </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS4 === 1">
-                CONTROLLER STATUS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS4 === 1">
-                PROGRAM STATUS</div>
-            </div>
-                        <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS4 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED4 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL SPEED</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED4 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>JOG SPEED</span>
-                </div>
-              </div>
+          <!-- FIXTURE 2 Section -->
+          <div class="mb-4">
+            <h5 class="text-center">HMI NEST A FIXTURE 2</h5>
+
+            <!-- CLAMP CYL -->
+            <div class="text-center mb-2">CLAMP CYL</div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
             </div>
 
-                        <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPosg2f">
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeedg2f">
-              </div>
+            <!-- VACUUM -->
+            <div class="text-center mb-2">VACUUM</div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
             </div>
 
-          </div>
-          <div class="card-footer p-1">
-            <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME4',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE4',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE4',1)">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD4', 'TARGETPOS4',targetPosg2f, 'TARGETSPEED4',targetSpeedg2f)">JOG FORWARD</button>
-              <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE4', 'TARGETPOS4',targetPosg2f, 'TARGETSPEED4',targetSpeedg2f)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START4',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP4',1)">STOP</button>
+            <!-- BLOWER -->
+            <div class="text-center mb-2">BLOWER</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Second Row - 4 Cards -->
-    <div class="row g-2">
-      <!-- Card 5: Gantry 1 Y Axis -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="false">
-          <div class="card-header bg-dark text-white py-1">
-            <h6 class="card-title mb-0 small-font">GANTRY 1 Y AXIS</h6>
-          </div>
-          <div class="card-body p-1">
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS5 === 1">GANTRY 1 Y AXIS  MODE POS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS5 === 1">
-                CONTROLLER STATUS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS5 === 1">
-                PROGRAM STATUS</div>
+    <!-- HMI NEST B Card -->
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <div class="card-header bg-dark text-white">
+          <h4 class="card-title text-center">HMI NEST B</h4>
+        </div>
+        <div class="card-body">
+          <!-- FIXTURE 1 Section -->
+          <div class="mb-4 border-bottom pb-3">
+            <h5 class="text-center">HMI NEST B FIXTURE 1</h5>
+
+            <!-- CLAMP CYL -->
+            <div class="text-center mb-2">CLAMP CYL</div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
             </div>
 
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS5 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS</span>
-                </div>
-              </div>
+            <!-- VACUUM -->
+            <div class="text-center mb-2">VACUUM</div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
             </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED5 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>RUNNIG PROGRAM NUMBER</span>
-                </div>
-              </div>
+
+            <!-- BLOWER -->
+            <div class="text-center mb-2">BLOWER</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
             </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED5 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>SELECT PROGRAM NUMBER</span>
-                </div>
-              </div>
-            </div>
-                        <!-- <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPosg1y">
-              </div>
-            </div> -->
-            <!-- <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeedg1y">
-              </div>
-            </div> -->
           </div>
-          <div class="card-footer p-1">
-            <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME5',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE5',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE5',1)">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD5', 'TARGETPOS5',targetPosg1y, 'TARGETSPEED5',targetSpeedg1y)">JOG FORWARD</button>
-              <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE5', 'TARGETPOS5',targetPosg1y, 'TARGETSPEED5',targetSpeedg1y)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START5',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP5',1)">STOP</button>
+
+          <!-- FIXTURE 2 Section -->
+          <div class="mb-4">
+            <h5 class="text-center">HMI NEST B FIXTURE 2</h5>
+
+            <!-- CLAMP CYL -->
+            <div class="text-center mb-2">CLAMP CYL</div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
+            </div>
+
+            <!-- VACUUM -->
+            <div class="text-center mb-2">VACUUM</div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
+            </div>
+
+            <!-- BLOWER -->
+            <div class="text-center mb-2">BLOWER</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-danger flex-grow-1 mx-1">RETRACT</button>
+              <button class="btn btn-dark flex-grow-1 mx-1">SELECTION</button>
+              <button class="btn btn-success flex-grow-1 mx-1">ADVANCE</button>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
+    <!-- VISION SYSTEM Card -->
+    <div class="col-md-4">
+      <!-- Vision System Card -->
+      <div class="card mb-3">
+        <div class="card-header bg-dark text-white">
+          <h4 class="card-title text-center">VISION SYSTEM</h4>
+        </div>
+        <div class="card-body mt-3">
+          <!-- Status Row -->
 
-      <!-- Card 7: Gantry 2 Y Axis -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="false">
-          <div class="card-header bg-dark text-white py-1">
-            <h6 class="card-title mb-0 small-font">GANTRY 2 Y AXIS</h6>
+          <div class="d-flex justify-content-between mb-3">
+            <button class="btn btn-primary flex-grow-1 mx-1">ALARM ACTIVE</button>
+            <button class="btn btn-success flex-grow-1 mx-1">READY</button>
+            <button class="btn btn-danger flex-grow-1 mx-1">RESET</button>
           </div>
-          <div class="card-body p-1">
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS7 === 1">GANTRY 2 X AXIS  MODE POS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS7 === 1">
-                CONTROLLER STATUS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS7 === 1">
-                PROGRAM STATUS</div>
-            </div>
+          <!-- Trigger Buttons -->
+          <div class="d-flex justify-content-between mb-3">
+            <button class="btn btn-primary flex-grow-1 mx-1">TRIGGER</button>
+            <button class="btn btn-success flex-grow-1 mx-1">OK</button>
+            <button class="btn btn-danger flex-grow-1 mx-1">NOK</button>
+          </div>
 
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS7 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED7 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>RUNNIG PROGRAM NUMBER</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED7 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>SELECT PROGRAM NUMBER</span>
-                </div>
-              </div>
-            </div>
-                        <!-- <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPosg2y">
-              </div>
-            </div> -->
-              <!-- <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeedg2y">
-              </div>
-            </div> -->
-          </div>
-          <div class="card-footer p-1">
-            <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME7',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE7',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE7',1)">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD7', 'TARGETPOS7',targetPosg2y, 'TARGETSPEED7',targetSpeedg2y)">JOG FORWARD</button>
-              <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE7', 'TARGETPOS7',targetPosg2y, 'TARGETSPEED7',targetSpeedg2y)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START7',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP7',1)">STOP</button>
-            </div>
-          </div>
+          <!-- Result Data -->
+<div class="result-data-container p-4">
+  <!-- Row 1 -->
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-between p-2 border-bottom">
+      <span>RESULT DATA-1</span>
+      <span class="text-dark">25.4 mm</span>
+    </div>
+    <div class="col-md-6 d-flex justify-content-between p-2 border-bottom">
+      <span>RESULT DATA-2</span>
+      <span class="text-dark">0.52°</span>
+    </div>
+  </div>
+  
+  <!-- Row 2 -->
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-between p-2 border-bottom">
+      <span>RESULT DATA-3</span>
+      <span class="text-dark">1245 </span>
+    </div>
+    <div class="col-md-6 d-flex justify-content-between p-2 border-bottom">
+      <span>RESULT DATA-4</span>
+      <span class="text-dark">32.6 </span>
+    </div>
+  </div>
+  
+  <!-- Row 3 -->
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-between p-2 border-bottom">
+      <span>RESULT DATA-5</span>
+      <span class="text-dark">256.6</span>
+    </div>
+    <div class="col-md-6 d-flex justify-content-between p-2 border-bottom">
+      <span>RESULT DATA-6</span>
+      <span class="text-dark">25.6</span>
+    </div>
+  </div>
+  
+  <!-- Row 4 -->
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-between p-2 border-bottom">
+      <span>RESULT DATA-7</span>
+      <span class="text-dark">0.0045</span>
+    </div>
+    <div class="col-md-6 d-flex justify-content-between p-2 border-bottom">
+      <span>RESULT DATA-8</span>
+      <span class="text-dark">Pass</span>
+    </div>
+  </div>
+  
+  <!-- Row 5 -->
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-between p-2 border-bottom">
+      <span>RESULT DATA-9</span>
+      <span class="text-dark">24.8°C</span>
+    </div>
+    <div class="col-md-6 d-flex justify-content-between p-2 border-bottom">
+      <span>RESULT DATA-10</span>
+      <span class="text-dark">0.87 mA</span>
+    </div>
+  </div>
+</div>
         </div>
       </div>
 
-      <!-- Card 8: Gantry 2 X Axis -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card h-100 compact-card" [class.border-success]="false">
-          <div class="card-header bg-dark text-white py-1">
-            <h6 class="card-title mb-0 small-font">GANTRY 2 X AXIS</h6>
-          </div>
-          <div class="card-body p-1">
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.IPCONVEYORMODEPOS6 === 1">GANTRY 2 Y AXIS  MODE POS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.CONTROLLERSTATUS6 === 1">
-                CONTROLLER STATUS</div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.PROGRAMSTATUS6 === 1">
-                PROGRAM STATUS</div>
-            </div>
+      <!-- Barcode Scanner Card -->
+      <div class="card mt-2">
+        <div class="card-header bg-dark text-white">
+          <h4 class="card-title text-center">BARCODE SCANNER</h4>
+        </div>
+        <div class="card-body mt-4">
+          <!-- Status Indicators -->
 
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALPOS6 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>ACTUAL POS</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.ACTUALSPEED6 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>RUNNIG PROGRAM NUMBER</span>
-                </div>
-              </div>
-            </div>
-            <div class="mb-1">
-              <div class="form-control-sm bg-light small-value" [class.glow-true]="data?.JOGSPEED6 === 1">
-                <div class="d-flex justify-content-between">
-                  <span>SELECT PROGRAM NUMBER</span>
-                </div>
-              </div>
-            </div>
-                        <!-- <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET POS</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetPosg2x">
-              </div>
-            </div> -->
-              <!-- <div class="mb-1">
-              <div class="input-group input-group-sm input-group-custom">
-                <span class="input-group-text bg-light input-group-label">TARGET SPEED</span>
-                <input type="number" step="0.01" min="0" class="form-control form-control-sm input-field"
-                  [(ngModel)]="targetSpeedg2x">
-              </div>
-            </div> -->
+     
+
+         <div class="d-flex justify-content-between mb-3">
+            <button class="btn btn-primary flex-grow-1 mx-1">ALARM ACTIVE</button>
+            <button class="btn btn-success flex-grow-1 mx-1">READY</button>
+            <button class="btn btn-danger flex-grow-1 mx-1">RESET</button>
           </div>
-          <div class="card-footer p-1">
-            <div class="d-flex flex-wrap gap-1">
-              <button class="btn btn-xs btn-primary flex-grow-1" (click)="pushValue('HOME6',1)">HOME</button>
-              <button class="btn btn-xs btn-secondary flex-grow-1" (click)="pushValue('INITIALIZE6',1)">INITIALIZE</button>
-              <button class="btn btn-xs btn-warning flex-grow-1" (click)="pushValue('OPENENABLE6',1)">OP ENABLE</button>
-              <button class="btn btn-xs btn-success flex-grow-1"
-                (click)="setJogValues('JOGFORWARD6', 'TARGETPOS6',targetPosg2x, 'TARGETSPEED6',targetSpeedg2x)">JOG FORWARD</button>
-              <button class="btn btn-xs btn-danger flex-grow-1"
-                (click)="setJogValues('JOGREVERSE6', 'TARGETPOS6',targetPosg2x, 'TARGETSPEED6',targetSpeedg2x)">JOG REVERSE</button>
-              <button class="btn btn-xs btn-success flex-grow-1" (click)="pushValue('START6',1)">START</button>
-              <button class="btn btn-xs btn-danger flex-grow-1" (click)="pushValue('STOP6',1)">STOP</button>
+          <!-- Trigger Buttons -->
+          <div class="d-flex justify-content-between mb-3">
+            <button class="btn btn-primary flex-grow-1 mx-1">TRIGGER</button>
+            <button class="btn btn-success flex-grow-1 mx-1">OK</button>
+            <button class="btn btn-danger flex-grow-1 mx-1">NOK</button>
+          </div>
+
+
+          <!-- Barcode Data -->
+          <div class="text-center p-2 bg-light rounded mb-2">
+            <h5>SCANNED DATA</h5>
+            <div class="p-2 bg-white border rounded">
+              No data scanned
             </div>
           </div>
         </div>

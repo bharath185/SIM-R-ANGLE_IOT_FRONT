@@ -4,17 +4,18 @@
     padding: 0 8px;
   }
   
-.machine-home-container {
-  min-height: 80vh;
-  background-color: rgba(76, 76, 76, 0.8);
-  color: #e8ebf0;
-  padding: 0.9rem;
-  border: 1px solid #3a414d;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  width: 100%;
-  box-sizing: border-box;
-}
+  .machine-home-container {
+    min-height: 80vh; /* Minimum height */
+    height: auto; /* Will expand beyond min-height if needed */
+    background-color: rgba(76, 76, 76, 0.8); /* Semi-transparent for better visibility */
+    color: #e8ebf0; /* --machine-light */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #3a414d; /* --machine-border */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
   
   /* Card Styles */
   .compact-card {

@@ -1,16 +1,556 @@
 <div class="machine-home-container">
-  <div class="card-grid">
-    <div class="card-wrapper" *ngFor="let item of indicators | keyvalue: originalOrder">
-      <div class="card"
-           [class.bg-success]="item.value"
-           [class.bg-light]="!item.value"
-           [class.text-white]="item.value">
-        <div class="card-body">
-          <h6 class="card-title">{{ splitKey(item.key).code }}</h6>
-          <p class="card-text">{{ splitKey(item.key).tagName }}</p>
-        </div>
-      </div>
+  <div class="main-card-grid">
+
+    <!-- Main Card 1 -->
+<div class="main-card">
+  <div class="card" [ngClass]="getCardClasses(indicators?.START_PB === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X0</h5>
+      <span>START PB</span>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.STOP_PB === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X1</h5>
+      <p>STOP PB</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.HOLD_PB === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X2</h5>
+      <p>HOLD PB</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.RESET_PB === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X3</h5>
+      <p>RESET PB</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.EMERGENCY_STOP === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X4</h5>
+      <p>EMERGENCY STOP</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.NEST_A_SIDE_START_PB === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X5</h5>
+      <p>NEST A SIDE START PB</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.NEST_B_SIDE_START_PB === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X6</h5>
+      <p>NEST B SIDE START PB</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.['NEXT_A&B_AUXILIARY_START_PB'] === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X7</h5>
+      <p>NEXT A&amp;B AUXILIARY START PB</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1010 === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X10</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.NEST_A_SIDE_CURTAIN_1011 === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X11</h5>
+      <p>NEST A SIDE CURTAIN</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.NEST_A_SIDE_CURTAIN_1012 === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X12</h5>
+      <p>NEST A SIDE CURTAIN</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1013 === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X13</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1014 === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X14</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1015 === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X15</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1016 === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X16</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1017 === true === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X17</h5>
+      <p>SPARE</p>
     </div>
   </div>
 </div>
 
+<div class="main-card">
+  <div class="card" [ngClass]="getCardClasses(indicators?.NEST_A_FIXTURE_1_CLAMP_CYL_FWD_RS === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X20</h5>
+      <p>NEST A FIXRE 1 CLAMP CYL FWD</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.NEST_A_FIXTURE_1_CLAMP_CYL_REV_RS === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X21</h5>
+      <p>NEST A FIXRE 1 CLAMP CYL REV</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.NEST_A_FIXTURE_2_CLAMP_CYL_FWD_RS === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X22</h5>
+      <p>NEST A FIXRE 2 CLAMP CYL FWD</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.NEST_A_FIXTURE_2_CLAMP_CYL_REV_RS === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X23</h5>
+      <p>NEST A FIXRE 2 CLAMP CYL REV</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.NEST_A_FIXTURE_2_CLAMP_CYL1_FWD_RS === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X24</h5>
+      <p>NEST A FIXRE 2 CLAMP CYL1 FWD</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1025 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X25</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1026 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X26</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1027 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X27</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1030 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X30</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1031 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X31</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1032 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X32</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1033 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X33</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1034 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X34</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1035 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X35</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1036 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X36</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+  <div class="card" [ngClass]="getCardClasses(indicators?.SPARE_1037 === true )">
+    <div class="card-body">
+      <h5 class="mt-2">X37</h5>
+      <p>SPARE</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="main-card">
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X20</h5><p>NEST A FIXTURE 1 CLAMP CYL FWD RS</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X21</h5><p>NEST A FIXTURE 1 CLAMP CYL REV RS</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X22</h5><p>NEST A FIXTURE 2 CLAMP CYL FWD RS</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X23</h5><p>NEST A FIXTURE 2 CLAMP CYL REV RS</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X24</h5><p>NEST A FIXTURE 2 CLAMP CYL1 FWD RS</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X25</h5><p>SPARE</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X26</h5><p>SPARE</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X27</h5><p>SPARE</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X30</h5><p>SPARE</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X31</h5><p>SPARE</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X32</h5><p>SPARE</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X33</h5><p>SPARE</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X34</h5><p>SPARE</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X35</h5><p>SPARE</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X36</h5><p>SPARE</p></div>
+  </div>
+  <div class="card bg-light text-dark">
+    <div class="card-body"><h5 class="mt-2">X37</h5><p>SPARE</p></div>
+  </div>
+</div>
+
+
+    <div class="main-card">
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y0</h5>
+          <p>CONTROL ON</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y1</h5>
+          <p>START LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y2</h5>
+          <p>HOLD PB LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y3</h5>
+          <p>RESET PB LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y4</h5>
+          <p>EMERGENCY PB LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y5</h5>
+          <p>FRL SOL</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y6</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y7</h5>
+          <p>TOWER LAMP RED</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y10</h5>
+          <p>TOWER LAMP YELLOW</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y11</h5>
+          <p>TOWER LAMP GREEN</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y12</h5>
+          <p>TOWER LAMP BUZZER</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y13</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y14</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y15</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y16</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y17</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Card 2 -->
+    <div class="main-card">
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y20</h5>
+          <p>NEST A PART 1 OK LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y21</h5>
+          <p>NEST A PART 1 NOK LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y22</h5>
+          <p>NEST A PART 2 OK LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y23</h5>
+          <p>NEST A PART 2 NOK LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y24</h5>
+          <p>NEST B PART 1 OK LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y25</h5>
+          <p>NEST B PART 1 NOK LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y26</h5>
+          <p>NEST B PART 2 OK LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y27</h5>
+          <p>NEST B PART 2 NOK LAMP</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y30</h5>
+          <p>NEST A FIXTURE 1 CLAMP CYL FWD</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y31</h5>
+          <p>NEST A FIXTURE 1 CLAMP CYL REV</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y32</h5>
+          <p>NEST A FIXTURE 2 CLAMP CYL FWD</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y33</h5>
+          <p>NEST A FIXTURE 2 CLAMP CYL REV</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y34</h5>
+          <p>NEST B FIXTURE 1 CLAMP CYL FWD</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y35</h5>
+          <p>NEST B FIXTURE 1 CLAMP CYL REV</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y36</h5>
+          <p>NEST B FIXTURE 2 CLAMP CYL FWD</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y37</h5>
+          <p>NEST B FIXTURE 2 CLAMP CYL REV</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Main Card 3 -->
+    <div class="main-card">
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y40</h5>
+          <p>NEST A FIXTURE 1 VACUUM GENERATOR</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y41</h5>
+          <p>NEST A FIXTURE 1 VACUUM SOL</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y42</h5>
+          <p>NEST B FIXTURE 1 VACUUM GENERATOR</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y43</h5>
+          <p>NEST B FIXTURE 1 VACUUM SOL</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y44</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y45</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y46</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y47</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y50</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y51</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y52</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y53</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y54</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y55</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y56</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h5 class="mt-2">Y57</h5>
+          <p>SPARE</p>
+        </div>
+      </div>
+    </div>                  
+  </div>
+</div>

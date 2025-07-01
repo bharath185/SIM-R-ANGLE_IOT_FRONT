@@ -2,51 +2,65 @@
   min-height: 80vh;
   background-color: rgba(76, 76, 76, 0.8);
   color: #e8ebf0;
-  padding: 1rem;
+  padding: 0.9rem;
   border: 1px solid #3a414d;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
   width: 100%;
-  
+  box-sizing: border-box;
 }
 
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(120px, 1fr));
-  gap: 0.1rem;
+/* Flex container for horizontal layout */
+.main-card-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
   width: 100%;
-  
+  flex-wrap: wrap; /* Optional: wrap if screen is small */
+}
 
-  .card {
-    height: 100%;
-    border-width: 1px;
-    transition: all 0.2s ease;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    
-    .card-body {
-      padding: 0.3rem;
-      display: flex;
-      flex-direction: column;
-   justify-content: center; // Center content vertically
-      align-items: center; // Center content horizontally
-      text-align: center; // Ensure text centering
-      width: 100%;
-      
-      .card-title {
-        font-size: 0.9rem;
-        font-weight: bold;
-        margin-bottom: 0;
-        line-height: 1.1;
-      }
-      
-      .card-text {
-        font-size: 0.65rem;
-        margin-bottom: 0;
-        line-height: 1;
-        word-break: break-word;
-      }
-    }
-  }
+/* Each main card takes 25% of the width with spacing */
+.main-card {
+  flex: 1 1 13%; /* 100% / 7 ≈ 14.28%, slightly less to allow for gaps */
+  display: flex;
+  flex-direction: column;
+  min-width: 120px; /* Adjust based on how small you want it to shrink */
+}
+
+/* Inner cards */
+// .card {
+//   height: 50px;
+//   text-align: center;
+//   border-radius: 8px;
+//   background-color: #f8f9fa;
+//   color: #000;
+//   box-shadow: 0 0 5px rgba(0,0,0,0.1);
+// }
+.card-body {
+  padding: 0.1rem ; /* Reduce default bootstrap padding */
+}
+.card  {
+  height: 40px;
+  margin: 2px; /* Remove any default margin */
+  padding: 2px; /* Reduce if needed */
+  text-align: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  color: #000;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px; /* space between CODE and TAGNAME */
+  padding: 0.3rem;
+}
+.card-body h6,
+.card-body p {
+  margin: 0;
+  font-weight: normal; 
+  font-size: small;/* optional: if you want same font weight */
 }

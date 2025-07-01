@@ -23,7 +23,7 @@
       <div class="card-body">
         <i class="fas fa-exclamation-circle fa-2x text-warning"></i>
         <h5 class="card-title mt-2">NR</h5>
-        <p class="card-text">{{ nrCount }}</p>
+        <p class="card-text">25</p>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@
       <div class="card-body">
         <i class="fas fa-question-circle fa-2x text-info"></i>
         <h5 class="card-title mt-2">SK</h5>
-        <p class="card-text">{{ skippedCount }}</p>
+        <p class="card-text">250</p>
       </div>
     </div>
   </div>
@@ -60,119 +60,78 @@
 </div>
 
 
-<div class="table-responsive ">
+
+
+<div class="table-responsive mt-4">
   <table class="table table-bordered table-sm text-center align-middle">
     <thead class="table-dark">
       <tr>
-        <th>Barcode</th>
-        <th *ngFor="let stage of stageHeaders">{{ stage }}</th>
-      </tr>
-    </thead>
-    <tbody class="current-pair">
-      <tr *ngFor="let barcode of barcodes">
-        <td>{{ barcode.name }}</td>
-        <td *ngFor="let color of barcode.stages" [ngClass]="getStageClass(color)">
-          <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="table-responsive " *ngIf="barcodeHistory.length > 0">
-  <table class="table table-bordered table-sm text-center align-middle">
-    <thead class="table-dark">
-      <tr>
-        <th>Barcode</th>
-        <th *ngFor="let stage of stageHeaders">{{ stage }}</th>
+        <th>BARCODE</th>
+        <th>RADIUS 1</th>
+        <th>RADIUS 2</th>
+        <th>FAI 1516 1</th>
+        <th>FAI 1516 2</th>
+        <th>FAI 1516 3</th>
+        <th>FAI 1516 4</th>
+        <th>OVERALL RESULT</th>
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let record of barcodeHistory">
-        <!-- Barcode 1 -->
-        <tr>
-          <td>{{ record.data.set1.barcode1|| 'BARCODE-1' }}</td>
-          <td *ngFor="let color of [
-            record.data.set1.InputStation,
-            record.data.set1.Trace,
-            record.data.set1.Process,
-            record.data.set1.MES,
-            record.data.set1['Transfer-1'],
-            record.data.set1['Vision-1'],
-            record.data.set1['PickPlace-1'],
-            record.data.set1['Transfer-2'],
-            record.data.set1['Vision-2'],
-            record.data.set1['PickPlace-2'],
-            record.data.set1.TraceUpload,
-            record.data.set1.MESUpload,
-            record.data.set1.UnloadStation
-          ]" [ngClass]="getStageClass(color)">
-            <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
-          </td>
-        </tr>
-        <!-- Barcode 2 -->
-        <tr>
-          <td>{{ record.data.set1.barcode2 || 'BARCODE-2' }}</td>
-          <td *ngFor="let color of [
-            record.data.set1.InputStation,
-            record.data.set1.Trace,
-            record.data.set1.Process,
-            record.data.set1.MES,
-            record.data.set1['Transfer-1'],
-            record.data.set1['Vision-1'],
-            record.data.set1['PickPlace-1'],
-            record.data.set1['Transfer-2'],
-            record.data.set1['Vision-2'],
-            record.data.set1['PickPlace-2'],
-            record.data.set1.TraceUpload,
-            record.data.set1.MESUpload,
-            record.data.set1.UnloadStation
-          ]" [ngClass]="getStageClass(color)">
-            <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
-          </td>
-        </tr>
-        <!-- Barcode 3 -->
-        <tr>
-          <td>{{ record.data.set2.barcode3 || 'BARCODE-3' }}</td>
-          <td *ngFor="let color of [
-            record.data.set2.InputStation,
-            record.data.set2.Trace,
-            record.data.set2.Process,
-            record.data.set2.MES,
-            record.data.set2['Transfer-1'],
-            record.data.set2['Vision-1'],
-            record.data.set2['PickPlace-1'],
-            record.data.set2['Transfer-2'],
-            record.data.set2['Vision-2'],
-            record.data.set2['PickPlace-2'],
-            record.data.set2.TraceUpload,
-            record.data.set2.MESUpload,
-            record.data.set2.UnloadStation
-          ]" [ngClass]="getStageClass(color)">
-            <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
-          </td>
-        </tr>
-        <!-- Barcode 4 -->
-        <tr>
-          <td>{{ record.data.set2.barcode4 || 'BARCODE-4' }}</td>
-          <td *ngFor="let color of [
-            record.data.set2.InputStation,
-            record.data.set2.Trace,
-            record.data.set2.Process,
-            record.data.set2.MES,
-            record.data.set2['Transfer-1'],
-            record.data.set2['Vision-1'],
-            record.data.set2['PickPlace-1'],
-            record.data.set2['Transfer-2'],
-            record.data.set2['Vision-2'],
-            record.data.set2['PickPlace-2'],
-            record.data.set2.TraceUpload,
-            record.data.set2.MESUpload,
-            record.data.set2.UnloadStation
-          ]" [ngClass]="getStageClass(color)">
-            <i *ngIf="getStageIcon(color)" [class]="getStageIcon(color)"></i>
-          </td>
-        </tr>
-      </ng-container>
+      <!-- Nest A Part 1 -->
+      <tr>
+        <td>{{ currentBarcodeData.barcode1 }}</td>
+        <td>{{ currentBarcodeData.nap1.radius1 }}</td>
+        <td>{{ currentBarcodeData.nap1.radius2 }}</td>
+        <td>{{ currentBarcodeData.nap1.fai1 }}</td>
+        <td>{{ currentBarcodeData.nap1.fai2 }}</td>
+        <td>{{ currentBarcodeData.nap1.fai3 }}</td>
+        <td>{{ currentBarcodeData.nap1.fai4 }}</td>
+        <td [ngClass]="getResultClass(currentBarcodeData.nap1.overall_result)">
+          {{ getResultText(currentBarcodeData.nap1.overall_result) }}
+        </td>
+      </tr>
+      
+      <!-- Nest A Part 2 -->
+      <tr>
+        <td>{{ currentBarcodeData.barcode2 }}</td>
+        <td>{{ currentBarcodeData.nap2.radius1 }}</td>
+        <td>{{ currentBarcodeData.nap2.radius2 }}</td>
+        <td>{{ currentBarcodeData.nap2.fai1 }}</td>
+        <td>{{ currentBarcodeData.nap2.fai2 }}</td>
+        <td>{{ currentBarcodeData.nap2.fai3 }}</td>
+        <td>{{ currentBarcodeData.nap2.fai4 }}</td>
+        <td [ngClass]="getResultClass(currentBarcodeData.nap2.overall_result)">
+          {{ getResultText(currentBarcodeData.nap2.overall_result) }}
+        </td>
+      </tr>
+      
+      <!-- Nest B Part 1 -->
+      <tr>
+        <td>{{ currentBarcodeData.barcode3 }}</td>
+        <td>{{ currentBarcodeData.nbp1.radius1 }}</td>
+        <td>{{ currentBarcodeData.nbp1.radius2 }}</td>
+        <td>{{ currentBarcodeData.nbp1.fai1 }}</td>
+        <td>{{ currentBarcodeData.nbp1.fai2 }}</td>
+        <td>{{ currentBarcodeData.nbp1.fai3 }}</td>
+        <td>{{ currentBarcodeData.nbp1.fai4 }}</td>
+        <td [ngClass]="getResultClass(currentBarcodeData.nbp1.overall_result)">
+          {{ getResultText(currentBarcodeData.nbp1.overall_result) }}
+        </td>
+      </tr>
+      
+      <!-- Nest B Part 2 -->
+      <tr>
+        <td>{{ currentBarcodeData.barcode4 }}</td>
+        <td>{{ currentBarcodeData.nbp2.radius1 }}</td>
+        <td>{{ currentBarcodeData.nbp2.radius2 }}</td>
+        <td>{{ currentBarcodeData.nbp2.fai1 }}</td>
+        <td>{{ currentBarcodeData.nbp2.fai2 }}</td>
+        <td>{{ currentBarcodeData.nbp2.fai3 }}</td>
+        <td>{{ currentBarcodeData.nbp2.fai4 }}</td>
+        <td [ngClass]="getResultClass(currentBarcodeData.nbp2.overall_result)">
+          {{ getResultText(currentBarcodeData.nbp2.overall_result) }}
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
