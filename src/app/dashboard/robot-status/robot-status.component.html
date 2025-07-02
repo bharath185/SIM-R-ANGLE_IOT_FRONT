@@ -117,7 +117,7 @@
           <button class="toggle-btn" (mousedown)="sendCommand('HOME1', true)"
             (mouseup)="sendCommand('HOME1', false)" (mouseleave)="buttonstate === 1 && sendCommand('HOME', false)">
             HOME
-          </button>
+        </button>
           <button class="toggle-btn" (mousedown)="sendCommand('REFERENCE1', true)"
             (mouseup)="sendCommand('REFERENCE', false)" (mouseleave)="buttonstate === 1 && sendCommand('REFERENCE1', false)">REFERENCE</button>
    <button class="toggle-btn" (click)="sendCommandToggle('OP_ENABLE1')" [class.active]="toggleStates['OP_ENABLE1']">OP ENABLE</button>
