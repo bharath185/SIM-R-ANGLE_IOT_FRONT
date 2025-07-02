@@ -8,7 +8,7 @@
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">SHUTTLE TRANSFER MODE POS</div>
-              <div class="indicator-value">{{ data?.SHUTTLE_TRANSFER_SERVO }}</div>
+              <div class="indicator-value">{{ data?.SHUTTLE_TRANSFER_MODE_POS }}</div>
             </div>
           </div>
           <div class="indicator-item">
@@ -48,21 +48,20 @@
         </div>
         <div class="buttons-section">
           <button class="toggle-btn" (mousedown)="sendCommand('HOME', true)"
-            (mouseup)="sendCommand('HOME', false)">
+            (mouseup)="sendCommand('HOME', false)"    (mouseleave)="buttonstate === 1 && sendCommand('HOME', false)">
             HOME
           </button>
           <button class="toggle-btn" (mousedown)="sendCommand('REFERENCE', true)"
-            (mouseup)="sendCommand('REFERENCE', false)">REFERENCE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('OP_ENABLE', true)"
-            (mouseup)="sendCommand('OP_ENABLE', false)">OP ENABLE</button>
+            (mouseup)="sendCommand('REFERENCE', false)" (mouseleave)="buttonstate === 1 && sendCommand('HOME', false)">REFERENCE</button>
+          <button class="toggle-btn" (click)="sendCommandToggle('OP_ENABLE')" [class.active]="toggleStates['OP_ENABLE']">OP ENABLE</button>
           <button class="toggle-btn" (mousedown)="sendCommand('JOG_FORWARD', true)"
-            (mouseup)="sendCommand('JOG_FORWARD', false)">JOG FORWARD</button>
+            (mouseup)="sendCommand('JOG_FORWARD', false)" (mouseleave)="buttonstate === 1 && sendCommand('JOG_FORWARD', false)">JOG FORWARD</button>
           <button class="toggle-btn" (mousedown)="sendCommand('JOG_REVERSE', true)"
-            (mouseup)="sendCommand('JOG_REVERSE', false)">JOG REVERSE</button>
+            (mouseup)="sendCommand('JOG_REVERSE', false)" (mouseleave)="buttonstate === 1 && sendCommand('JOG_REVERSE', false)">JOG REVERSE</button>
           <button class="toggle-btn" (mousedown)="sendCommand('START', true)"
-            (mouseup)="sendCommand('START', false)">START</button>
+            (mouseup)="sendCommand('START', false)" (mouseleave)="buttonstate === 1 && sendCommand('START', false)">START</button>
           <button class="toggle-btn " (mousedown)="sendCommand('STOP', true)"
-            (mouseup)="sendCommand('STOP', false)">STOP</button>
+            (mouseup)="sendCommand('STOP', false)" (mouseleave)="buttonstate === 1 && sendCommand('STOP', false)">STOP</button>
 
         </div>
       </div>
@@ -76,7 +75,7 @@
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">SHUTTLE TRANSFER MODE POS</div>
-              <div class="indicator-value">{{ data?.SHUTTLE_TRANSFER_SERVO1 }}</div>
+              <div class="indicator-value">{{ data?.SHUTTLE_TRANSFER_MODE_POS1 }}</div>
             </div>
           </div>
           <div class="indicator-item">
@@ -116,21 +115,20 @@
         </div>
         <div class="buttons-section">
           <button class="toggle-btn" (mousedown)="sendCommand('HOME1', true)"
-            (mouseup)="sendCommand('HOME1', false)">
+            (mouseup)="sendCommand('HOME1', false)" (mouseleave)="buttonstate === 1 && sendCommand('HOME', false)">
             HOME
           </button>
           <button class="toggle-btn" (mousedown)="sendCommand('REFERENCE1', true)"
-            (mouseup)="sendCommand('REFERENCE', false)">REFERENCE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('OP_ENABLE1', true)"
-            (mouseup)="sendCommand('OP_ENABLE1', false)">OP ENABLE</button>
+            (mouseup)="sendCommand('REFERENCE', false)" (mouseleave)="buttonstate === 1 && sendCommand('REFERENCE1', false)">REFERENCE</button>
+   <button class="toggle-btn" (click)="sendCommandToggle('OP_ENABLE1')" [class.active]="toggleStates['OP_ENABLE1']">OP ENABLE</button>
           <button class="toggle-btn" (mousedown)="sendCommand('JOG_FORWARD1', true)"
-            (mouseup)="sendCommand('JOG_FORWARD1', false)">JOG FORWARD</button>
+            (mouseup)="sendCommand('JOG_FORWARD1', false)" (mouseleave)="buttonstate === 1 && sendCommand('JOG_FORWARD1', false)">JOG FORWARD</button>
           <button class="toggle-btn" (mousedown)="sendCommand('JOG_REVERSE1', true)"
-            (mouseup)="sendCommand('JOG_REVERSE1', false)">JOG REVERSE</button>
+            (mouseup)="sendCommand('JOG_REVERSE1', false)" (mouseleave)="buttonstate === 1 && sendCommand('JOG_REVERSE1', false)">JOG REVERSE</button>
           <button class="toggle-btn" (mousedown)="sendCommand('START1', true)"
-            (mouseup)="sendCommand('START1', false)">START</button>
+            (mouseup)="sendCommand('START1', false)" (mouseleave)="buttonstate === 1 && sendCommand('START1', false)">START</button>
           <button class="toggle-btn " (mousedown)="sendCommand('STOP1', true)"
-            (mouseup)="sendCommand('STOP1', false)">STOP</button>
+            (mouseup)="sendCommand('STOP1', false)" (mouseleave)="buttonstate === 1 && sendCommand('STOP1', false)">STOP</button>
 
         </div>
       </div>
@@ -144,7 +142,7 @@
           <div class="indicator-item">
             <div class="indicator-content">
               <div class="indicator-title mx-3">SHUTTLE TRANSFER MODE POS</div>
-              <div class="indicator-value">{{ data?.SHUTTLE_TRANSFER_SERVO2 }}</div>
+              <div class="indicator-value">{{ data?.SHUTTLE_TRANSFER_MODE_POS3 }}</div>
             </div>
           </div>
           <div class="indicator-item">
@@ -184,21 +182,20 @@
         </div>
         <div class="buttons-section">
           <button class="toggle-btn" (mousedown)="sendCommand('HOME2', true)"
-            (mouseup)="sendCommand('HOME2', false)">
+            (mouseup)="sendCommand('HOME2', false)" (mouseleave)="buttonstate === 1 && sendCommand('STOP1', false)">
             HOME
           </button>
           <button class="toggle-btn" (mousedown)="sendCommand('REFERENCE2', true)"
-            (mouseup)="sendCommand('REFERENCE2', false)">REFERENCE</button>
-          <button class="toggle-btn" (mousedown)="sendCommand('OP_ENABLE2', true)"
-            (mouseup)="sendCommand('OP_ENABLE2', false)">OP ENABLE</button>
+            (mouseup)="sendCommand('REFERENCE2', false)" (mouseleave)="buttonstate === 1 && sendCommand('REFERENCE2', false)">REFERENCE</button>
+          <button class="toggle-btn" (click)="sendCommandToggle('OP_ENABLE2')" [class.active]="toggleStates['OP_ENABLE2']">OP ENABLE</button>
           <button class="toggle-btn" (mousedown)="sendCommand('JOG_FORWARD2', true)"
-            (mouseup)="sendCommand('JOG_FORWARD2', false)">JOG FORWARD</button>
+            (mouseup)="sendCommand('JOG_FORWARD2', false)" (mouseleave)="buttonstate === 1 && sendCommand('JOG_FORWARD2', false)">JOG FORWARD</button>
           <button class="toggle-btn" (mousedown)="sendCommand('JOG_REVERSE2', true)"
-            (mouseup)="sendCommand('JOG_REVERSE2', false)">JOG REVERSE</button>
+            (mouseup)="sendCommand('JOG_REVERSE2', false)" (mouseleave)="buttonstate === 1 && sendCommand('JOG_REVERSE2', false)">JOG REVERSE</button>
           <button class="toggle-btn" (mousedown)="sendCommand('START2', true)"
-            (mouseup)="sendCommand('START2', false)">START</button>
+            (mouseup)="sendCommand('START2', false)" (mouseleave)="buttonstate === 1 && sendCommand('START2', false)">START</button>
           <button class="toggle-btn " (mousedown)="sendCommand('STOP2', true)"
-            (mouseup)="sendCommand('STOP2', false)">STOP</button>
+            (mouseup)="sendCommand('STOP2', false)" (mouseleave)="buttonstate === 1 && sendCommand('STOP2', false)">STOP</button>
 
         </div>
       </div>

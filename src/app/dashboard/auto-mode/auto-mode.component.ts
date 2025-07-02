@@ -113,13 +113,17 @@ export class AutoModeComponent implements OnInit, OnDestroy {
       : 'No alarms detected';
   }
 
-  getResultClass(result: number): string {
-    return result === 1 ? 'table-success' : result === 0 ? 'table-danger' : '';
-  }
+getResultText(value: any): string {
+  if (value === 1) return 'OK ✅';
+  if (value === 0) return 'NOK ❌';
+  return ''; // Show nothing if undefined or any other value
+}
 
-  getResultText(result: number): string {
-    return result === 1 ? 'OK' : result === 0 ? 'NOK' : '';
-  }
+getResultClass(value: any): string {
+  if (value === 1) return 'result-ok';
+  if (value === 0) return 'result-nok';
+  return ''; // No class if value is not set
+}
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();

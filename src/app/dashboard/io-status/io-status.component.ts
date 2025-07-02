@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { WebsocketService } from 'src/app/configuration/WebsocketService';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,10 +14,34 @@ import { Subscription } from 'rxjs';
   templateUrl: './io-status.component.html',
   styleUrls: ['./io-status.component.scss']
 })
-export class IoStatusComponent  {
+export class IoStatusComponent implements OnInit {
+
+  ngOnInit(): void {
+        this.connectToStatus();
+  }
+
+    constructor(private wsService: WebsocketService) { }
 
   columnWiseIndicators: any[] = [];
-  
+  isConnected = false;
+connectionId="io-status";
+
+  private connectToStatus(): void {
+    this.wsService.initConnection(this.connectionId);
+    this.wsService.getMessages(this.connectionId).subscribe({
+      next: (msg: string) => {
+        try {
+          this.indicators = JSON.parse(msg);
+          console.log("data", this.indicators);
+        } catch (e) {
+          console.error('Error parsing message:', e);
+        }
+      },
+      error: (err: any) => console.error('WebSocket error:', err),
+      complete: () => console.log('WebSocket connection closed')
+    });
+  }
+
 indicators={
   "START_PB": true,
   "STOP_PB": false,

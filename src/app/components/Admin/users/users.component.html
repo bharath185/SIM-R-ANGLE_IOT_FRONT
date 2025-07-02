@@ -68,19 +68,21 @@
             </td>
            <td>
             <div class="role-select">
-              <select
-                class="form-select"
-                [(ngModel)]="row.role_id"
-                [disabled]="!row.isEditing"
-                (change)="selectRole(row, $event)" 
-                required>
-                    <option value="" disabled selected>Select Role</option>
-                    <option 
-                      *ngFor="let role of roles" 
-                      [value]="role.id">
-                      {{ role.name | titlecase }}
-                    </option>
-              </select>
+            <select
+              class="form-select"
+              [(ngModel)]="row.role_id"
+              [disabled]="!row.isEditing"
+              (change)="selectRole(row, $event)" 
+              required>
+              
+              <option value="" disabled selected>Select Role</option>
+
+          <ng-container *ngFor="let role of roles">
+              <ng-container *ngIf="role.name !== 'operator'">
+                <option [value]="role.id">{{ role.name | titlecase }}</option>
+              </ng-container>
+            </ng-container>
+            </select>
               <small class="text-danger" *ngIf="row.isEditing && !row.role_id">Role  is mandatory</small>
             </div>
           </td>

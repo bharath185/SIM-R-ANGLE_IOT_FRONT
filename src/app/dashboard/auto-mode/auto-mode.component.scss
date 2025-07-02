@@ -31,6 +31,7 @@
     white-space: nowrap; /* prevent text wrapping */
     text-overflow: ellipsis;
     overflow: hidden;
+        color: white;
   }
   
   /* Optional: truncate stage header text */
@@ -44,10 +45,12 @@
   /* Icon size smaller */
   table.table i {
     font-size: 0.9rem;
+    color: white;
   }
   
   .current-pair {
-    background-color: #d4f8e8;
+    background-color: #000000;
+    color: white;
     border-color: #00a153;
     box-shadow:
       0 0 10px 2px rgba(0, 161, 83, 0.7),
@@ -56,3 +59,12 @@
     color: #064d29;
   }
   
+  .result-ok {
+  color: green;
+  font-weight: bold;
+}
+
+.result-nok {
+  color: red;
+  font-weight: bold;
+}

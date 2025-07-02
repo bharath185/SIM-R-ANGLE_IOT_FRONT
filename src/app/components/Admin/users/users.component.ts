@@ -82,8 +82,8 @@ next: (response: any) => {
 
     this.rows = response.map(row => {
         try {
-            const roleId = row.role_id || this.getRoleId(row.roleName);
-            const roleName = row.roleName || this.getRoleName(row.role_id);
+            const roleId = row.role_id ;
+            const roleName = row.roleName ;
             
             return {
                 ...row,
@@ -114,10 +114,7 @@ next: (response: any) => {
     const role = this.roles.find(r => r.roleid === roleId);
     return role ? role.roleName : 'Unknown Role';
   }
-getRoleId(roleName: string): number {
-    const role = this.roles.find(r => r.roleName === roleName);
-    return role ? role.roleid : -1; // Return -1 or null if role not found
-}
+
 
   addRow() {
     if (this.currentlyEditingIndex === -1) {
@@ -224,7 +221,7 @@ getRoleId(roleName: string): number {
     email: row.email,
     username: row.username,
     password: row.password,
-    role: row.role_id
+    role_id: row.role_id
     }
     this.userService.saveUser(payload).subscribe(
       response => {

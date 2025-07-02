@@ -62,7 +62,7 @@
 
 
 
-<div class="table-responsive mt-4">
+<div class="table-responsive current-pair mt-4">
   <table class="table table-bordered table-sm text-center align-middle">
     <thead class="table-dark">
       <tr>
@@ -86,9 +86,14 @@
         <td>{{ currentBarcodeData.nap1.fai2 }}</td>
         <td>{{ currentBarcodeData.nap1.fai3 }}</td>
         <td>{{ currentBarcodeData.nap1.fai4 }}</td>
-        <td [ngClass]="getResultClass(currentBarcodeData.nap1.overall_result)">
-          {{ getResultText(currentBarcodeData.nap1.overall_result) }}
-        </td>
+<td [ngClass]="getResultClass(currentBarcodeData.nbp1.overall_result)">
+  <ng-container *ngIf="currentBarcodeData.nbp1.overall_result === 1">
+    <i class="fas fa-check-circle"></i> OK
+  </ng-container>
+  <ng-container *ngIf="currentBarcodeData.nbp1.overall_result === 0">
+    <i class="fas fa-times-circle"></i> NOK
+  </ng-container>
+</td>
       </tr>
       
       <!-- Nest A Part 2 -->

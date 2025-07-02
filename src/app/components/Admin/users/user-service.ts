@@ -42,7 +42,7 @@ export class UserService {
 
   // POST to update an existing level
   updateUser(user: any): Observable<any> {
-    return this.http.post(`${this.BaseEndpoint}users/${user.username}`, user, { headers: this.reqHeader });
+    return this.http.put(`${this.BaseEndpoint}users/${user.username}`, user, { headers: this.reqHeader });
   }
 
   // DELETE a level by ID

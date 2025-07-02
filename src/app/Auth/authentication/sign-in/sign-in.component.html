@@ -21,29 +21,21 @@
             <!-- Login Form -->
             <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
               <!-- Role Dropdown -->
-              <div class="input-group mb-3 custom-input">
-              <select 
-                    id="roleSelect"
-                    formControlName="role" 
-                    class="form-control form-control-md" 
-                    aria-label="Select Role"
-                    [disabled]="loading">
-                    
-                    <option value="" disabled selected>Select Role</option>
-                    <option 
-                      *ngFor="let role of roles" 
-                      [value]="role.id">
-                      {{ role.name | titlecase }}
-                    </option>
-                  </select>
+              <div class="custom-select-wrapper w-100 mt-3" style="max-width: 60%;">
+                <select id="roleSelect" formControlName="role" class="form-select" aria-label="Select Role"
+                  [disabled]="loading">
+
+                  <option value="" disabled selected>Select Role</option>
+                  <option *ngFor="let role of roles" [value]="role.id" >
+                    {{ role.name | titlecase }}
+                  </option>
+                </select>
               </div>
               <div *ngIf="loginForm.controls['role'].invalid && loginForm.controls['role'].touched"
                 class="text-danger small">
                 Please select a role.
               </div>
-
-              <!-- Username Field -->
-              <div class="input-group mb-3 custom-input">
+              <div class="input-group mb-3 custom-input mt-3">
                 <span class="input-group-text custom-icon">
                   <i class="feather icon-user fa-1x"></i>
                 </span>

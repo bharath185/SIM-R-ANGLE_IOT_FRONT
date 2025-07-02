@@ -37,8 +37,9 @@ connectionId2="plc-write";
       complete: () => console.log('WebSocket connection closed')
     });
   }
-
+buttonstate:Number=0;
   async sendCommand(address: string, value: number | boolean): Promise<void> {
+    this.buttonstate=typeof value === 'boolean' ? (value ? 1 : 0) : value;
     const data = {
       section: 'robo',
       tag_name: address,
@@ -57,10 +58,11 @@ connectionId2="plc-write";
       this.wsService.sendMessage(this.connectionId2,message).subscribe({
         next: (response: any) => {
           console.log("WebSocket Response:", response);
+          
         },
         error: (error: any) => {
           console.error("WebSocket Error:", error);
-
+         
         }
       });
     } catch (error) {
@@ -68,6 +70,42 @@ connectionId2="plc-write";
     }
   }
 
+ toggleStates: { [key: string]: boolean } = {
+  'OP_ENABLE': false,
+  'OP_ENABLE1': false,
+  'OP_ENABLE2': false
+};
+  async sendCommandToggle(address:any){
+   this.toggleStates[address] = !this.toggleStates[address];
+    const data = {
+      section: 'robo',
+      tag_name: address,
+      value: this.toggleStates[address]
+    };
+    const message = JSON.stringify(data);
+
+    console.log("Sending message:", message);
+
+    try {
+      if (!this.isConnected) {
+        this.wsService.initConnection(this.connectionId2);
+        await new Promise(resolve => setTimeout(resolve, 300));
+      }
+
+      this.wsService.sendMessage(this.connectionId2,message).subscribe({
+        next: (response: any) => {
+          console.log("WebSocket Response:", response);
+          
+        },
+        error: (error: any) => {
+          console.error("WebSocket Error:", error);
+         
+        }
+      });
+    } catch (error) {
+      console.error("Command failed:", error);
+    }
+  }
   getStatusClass(value: boolean): string {
     return value ? 'true' : 'false';
   }
